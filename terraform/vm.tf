@@ -19,26 +19,37 @@ resource "google_compute_instance" "this" {
   }
 
   metadata = {
+    "enable-oslogin" = "FALSE",  # To connecting with ssh
     ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
   }
 
-  # metadata_startup_script = <<-EOF
-  #   #!/bin/bash
-  #   apt-get update
-  #   apt-get install -y python3-pip python3-dev git
-  #   pip3 install virtualenv
+  metadata_startup_script = <<-EOF
+    #!/bin/bash
+    exec > /var/log/startup.log 2>&1  # Przekierowanie stdout i stderr do pliku logów
 
-  #   cd /opt/
-  #   git clone https://github.com/LJaremek/CloudComputing-MINI.git
-  #   cd CloudComputing-MINI/shared_notes
+    echo "Aktualizacja listy pakietów..."
+    sudo apt-get update
 
-  #   python3 -m virtualenv venv
-  #   source venv/bin/activate
+    echo "Instalacja Pythona i Git..."
+    sudo apt-get install -y python3-pip python3-dev git
 
-  #   pip install -r requirements.txt
+    echo "Instalacja i konfiguracja virtualenv..."
+    sudo pip3 install virtualenv
 
-  #   nohup python3 manage.py runserver 0.0.0.0:8000 &
-  # EOF
+    echo "Klonowanie repozytorium..."
+    sudo git clone https://github.com/LJaremek/CloudComputing-MINI.git /opt/CloudComputing-MINI
+    cd /opt/CloudComputing-MINI/shared_notes
+
+    echo "Tworzenie środowiska wirtualnego i jego aktywacja..."
+    sudo python3 -m virtualenv venv
+    source venv/bin/activate
+
+    echo "Instalacja zależności..."
+    sudo pip3 install -r requirements.txt
+
+    echo "Uruchamianie serwera Django..."
+    sudo nohup python3 manage.py runserver 0.0.0.0:8000 &
+  EOF
 
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro", "sql-admin"]
