@@ -70,19 +70,3 @@ resource "google_compute_firewall" "this" {
 
   source_ranges = ["0.0.0.0/0"]  # Pozwala na ruch z dowolnego adresu IP
 }
-
-# resource "google_sql_database_instance" "this" {
-#   name             = "instance-name"
-#   database_version = "POSTGRES_15"
-#   region           = "europe-west1"
-#   project          = google_project.this.project_id
-
-#   settings {
-#     tier = "db-f1-micro"
-
-#     ip_configuration {
-#       ipv4_enabled = true
-#       require_ssl  = true
-#     }
-#   }
-# }

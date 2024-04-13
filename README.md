@@ -1,2 +1,2 @@
-# Clodu Computing repo
+# Cloud Computing repo
 
