@@ -1,8 +1,3 @@
-provider "google" {
-  region  = "europe-west1"
-#   zone    = "europe-west1-b"
-}
-
 resource "random_string" "project_id" {
   length   = 16 
   special  = false
@@ -24,18 +19,10 @@ resource "google_sql_database_instance" "this" {
 
   settings {
     tier = "db-f1-micro"
+
+    ip_configuration {
+      ipv4_enabled = true
+      require_ssl  = true
+    }
   }
-}
-
-resource "google_sql_database" "this" {
-  name     = "CloudComputingDatabase"
-  instance = google_sql_database_instance.this.name
-  project  = google_project.this.project_id
-}
-
-resource "google_sql_user" "users" {
-  name     = "Admin"
-  instance = google_sql_database_instance.this.name
-  password = "TestPa$$word123"
-  project  = google_project.this.project_id
 }
