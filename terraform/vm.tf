@@ -4,6 +4,8 @@ resource "google_compute_instance" "this" {
   zone         = "europe-west1-b"
   project      = google_project.this.project_id
 
+  depends_on = [google_project_service.this]
+
   boot_disk {
     initialize_params {
       image = "debian-10-buster-v20240312"
@@ -20,6 +22,24 @@ resource "google_compute_instance" "this" {
     ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
   }
 
+  # metadata_startup_script = <<-EOF
+  #   #!/bin/bash
+  #   apt-get update
+  #   apt-get install -y python3-pip python3-dev git
+  #   pip3 install virtualenv
+
+  #   cd /opt/
+  #   git clone https://github.com/LJaremek/CloudComputing-MINI.git
+  #   cd CloudComputing-MINI/shared_notes
+
+  #   python3 -m virtualenv venv
+  #   source venv/bin/activate
+
+  #   pip install -r requirements.txt
+
+  #   nohup python3 manage.py runserver 0.0.0.0:8000 &
+  # EOF
+
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro", "sql-admin"]
   }
@@ -30,9 +50,11 @@ resource "google_compute_firewall" "this" {
   network = "default"
   project = google_project.this.project_id
 
+  depends_on = [google_project_service.this]
+
   allow {
     protocol = "tcp"
-    ports    = ["80", "443"]
+    ports    = ["80", "443", "8000"]
   }
 
   source_ranges = ["0.0.0.0/0"]  # Pozwala na ruch z dowolnego adresu IP

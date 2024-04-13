@@ -11,6 +11,11 @@ resource "google_project" "this" {
   billing_account = "019369-8CFC89-7725FB"
 }
 
+resource "google_project_service" "this" {
+  project = google_project.this.project_id
+  service = "compute.googleapis.com"
+}
+
 resource "google_sql_database_instance" "this" {
   name                = "instance-name"
   database_version    = "POSTGRES_15"
