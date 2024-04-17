@@ -15,3 +15,8 @@ resource "google_project_service" "this" {
   project = google_project.this.project_id
   service = "compute.googleapis.com"  # auto set: https://console.cloud.google.com/apis/dashboard
 }
+
+resource "google_project_service" "sqladmin" {
+  project = google_project.this.project_id
+  service = "sqladmin.googleapis.com"
+}

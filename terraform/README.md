@@ -37,3 +37,20 @@ Apply all changes from code
 
 ### 4. terraform destroy
 Delete all objects from the code
+
+
+# Database connection
+From your local machine set gcloud project id:
+```bash
+gcloud config set project <PROJECT-ID>
+```
+
+Then check database IP (second one result after semicolon):
+```bash
+gcloud sql instances describe instance-name --format="get(ipAddresses.ipAddress)"
+```
+
+From VM type command:
+```bash
+psql -h <DATABASE-IP> -d CloudComputingDatabase -U Admin -p 5432
+```
