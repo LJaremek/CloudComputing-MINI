@@ -1,7 +1,18 @@
+data "google_compute_zones" "this" {
+  project = google_project.this.project_id
+  region  = "europe-west1"
+  # status  = "UP"
+
+  depends_on = [google_project_service.this]
+}
+
+data "google_client_openid_userinfo" "me" {
+}
+
 resource "google_compute_instance" "this" {
   name         = "django-vm"
-  machine_type = "f1-micro"
-  zone         = "europe-west1-b"
+  machine_type = "e2-small"
+  zone         = data.google_compute_zones.this.names[0]
   project      = google_project.this.project_id
 
   depends_on = [google_project_service.this]
@@ -20,7 +31,8 @@ resource "google_compute_instance" "this" {
 
   metadata = {
     "enable-oslogin" = "FALSE",  # To connecting with ssh
-    ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+    # ssh-keys = "root:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "root:${file("C:/Users/Studia/.ssh/id_rsa.pub")}"
   }
 
   metadata_startup_script = <<-EOF
