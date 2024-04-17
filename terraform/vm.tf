@@ -11,7 +11,8 @@ data "google_client_openid_userinfo" "me" {
 
 resource "google_compute_instance" "this" {
   name         = "django-vm"
-  machine_type = "e2-small"
+  # All Compute Engines: https://cloud.google.com/compute/all-pricing
+  machine_type = "c2d-highcpu-2"  # "e2-medium"
   zone         = data.google_compute_zones.this.names[0]
   project      = google_project.this.project_id
 
@@ -35,33 +36,8 @@ resource "google_compute_instance" "this" {
     ssh-keys = "root:${file("C:/Users/Studia/.ssh/id_rsa.pub")}"
   }
 
-  metadata_startup_script = <<-EOF
-    #!/bin/bash
-    exec > /var/log/startup.log 2>&1  # Przekierowanie stdout i stderr do pliku logów
-
-    echo "Aktualizacja listy pakietów..."
-    sudo apt-get update
-
-    echo "Instalacja Pythona i Git..."
-    sudo apt-get install -y python3-pip python3-dev git
-
-    echo "Instalacja i konfiguracja virtualenv..."
-    sudo pip3 install virtualenv
-
-    echo "Klonowanie repozytorium..."
-    sudo git clone https://github.com/LJaremek/CloudComputing-MINI.git /opt/CloudComputing-MINI
-    cd /opt/CloudComputing-MINI/shared_notes
-
-    echo "Tworzenie środowiska wirtualnego i jego aktywacja..."
-    sudo python3 -m virtualenv venv
-    source venv/bin/activate
-
-    echo "Instalacja zależności..."
-    sudo pip3 install -r requirements.txt
-
-    echo "Uruchamianie serwera Django..."
-    sudo nohup python3 manage.py runserver 0.0.0.0:8000 &
-  EOF
+  # I know it is ugly. However it works only in this way
+  metadata_startup_script = "sudo apt-get update;sudo apt-get install -y python3-pip python3-dev git;sudo pip3 install virtualenv;sudo git clone https://github.com/LJaremek/CloudComputing-MINI.git /opt/CloudComputing-MINI;cd /opt/CloudComputing-MINI/shared_notes;sudo python3 -m virtualenv venv;source venv/bin/activate;sudo pip3 install -r requirements.txt;sudo nohup python3 manage.py runserver 0.0.0.0:8000 &"
 
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro", "sql-admin"]
