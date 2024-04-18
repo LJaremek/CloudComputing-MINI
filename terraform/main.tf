@@ -11,7 +11,7 @@ resource "google_project" "this" {
   billing_account = "019369-8CFC89-7725FB"
 }
 
-resource "google_project_service" "this" {
+resource "google_project_service" "compute" {
   project = google_project.this.project_id
   service = "compute.googleapis.com"  # auto set: https://console.cloud.google.com/apis/dashboard
 }

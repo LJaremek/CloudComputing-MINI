@@ -12,7 +12,7 @@ resource "google_sql_database_instance" "this" {
       require_ssl  = false
       authorized_networks {
         name  = "VM-to-SQL"
-        value = "${google_compute_instance.this.network_interface.0.access_config.0.nat_ip}/32"
+        value = "${google_compute_address.vm_address.address}/32"
       }
     }
   }
