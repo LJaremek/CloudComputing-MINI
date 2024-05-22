@@ -30,3 +30,21 @@ resource "google_sql_user" "admin" {
   password = "TestPa$$word123"
   project  = google_project.this.project_id
 }
+
+resource "google_dns_managed_zone" "this" {
+  project  = google_project.this.project_id
+  name     = "django-postgresql-zone"
+  dns_name = "djangopostgresql.com."
+
+  depends_on = [google_project_service.dns]
+}
+
+resource "google_dns_record_set" "this" {
+  project      = google_project.this.project_id
+  name         = "db.djangopostgresql.com."
+  type         = "A"
+  ttl          = 300
+  managed_zone = google_dns_managed_zone.this.name
+
+  rrdatas = [google_sql_database_instance.this.public_ip_address]
+}
