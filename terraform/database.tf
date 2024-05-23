@@ -47,4 +47,6 @@ resource "google_dns_record_set" "this" {
   managed_zone = google_dns_managed_zone.this.name
 
   rrdatas = [google_sql_database_instance.this.public_ip_address]
+
+  depends_on = [google_sql_database_instance.this]
 }
