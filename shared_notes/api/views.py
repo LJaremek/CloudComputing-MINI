@@ -25,5 +25,5 @@ class ListUsersView(generics.ListAPIView):
 
 
 class ListNotesView(generics.ListAPIView):
-    queryset = User.objects.all()
+    queryset = Note.objects.all()
     serializer_class = NoteSerializer
