@@ -2,11 +2,8 @@
 
 ### How to run project
 1. Install requirements
-Terraform:
-https://developer.hashicorp.com/terraform/install
-
-Google Cloud:
-https://cloud.google.com/sdk/docs/install
+* Terraform: https://developer.hashicorp.com/terraform/install
+* Google Cloud: https://cloud.google.com/sdk/docs/install
 
 2. Authenticate yourself
 Google Cloud:
