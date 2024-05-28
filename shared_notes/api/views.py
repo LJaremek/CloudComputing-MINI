@@ -1,4 +1,6 @@
+from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework import status
 
 from .serializers import UserSerializer, NoteSerializer, SharedNoteSerializer
 from .models import User, Note, SharedNote
@@ -27,3 +29,14 @@ class ListUsersView(generics.ListAPIView):
 class ListNotesView(generics.ListAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
+
+
+class DeleteNoteView(generics.DestroyAPIView):
+    queryset = Note.objects.all()
+    serializer_class = NoteSerializer
+    lookup_url_kwarg = 'note_id'
+
+    def delete(self, request, *args, **kwargs):
+        note = self.get_object()
+        self.perform_destroy(note)
+        return Response(status=status.HTTP_204_NO_CONTENT)
