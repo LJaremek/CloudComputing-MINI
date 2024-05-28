@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "api",  # api for PostgreSQL
-    "rest_framework"  # api for endpoints
+    "rest_framework",  # api for endpoints
+    "rest_framework_swagger"  # Swagger
 ]
 
 MIDDLEWARE = [
