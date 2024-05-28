@@ -59,3 +59,42 @@
     "shared_at": <auto_now> // optional
 }
 ```
+
+### Delete Note
+* **URL**: `/api/delete_note/<note_id>`
+* **Method**: `DELETE`
+* **Description**: Delete note.
+* **Request Body**:
+```json
+[
+    {
+        "id_note": 1
+    }
+]
+```
+
+### Delete User
+* **URL**: `/api/delete_user/<note_id>`
+* **Method**: `DELETE`
+* **Description**: Delete user.
+* **Request Body**:
+```json
+[
+    {
+        "id_user": 1
+    }
+]
+```
+
+### Delete Shared Note
+* **URL**: `/api/delete_shared/<note_id>`
+* **Method**: `DELETE`
+* **Description**: Delete shared note.
+* **Request Body**:
+```json
+[
+    {
+        "id_shared": 1
+    }
+]
+```
