@@ -87,14 +87,14 @@
 ```
 
 ### Delete Shared Note
-* **URL**: `/api/delete_shared/<note_id>`
+* **URL**: `/api/delete_shared_note/<shared_note_id>`
 * **Method**: `DELETE`
 * **Description**: Delete shared note.
 * **Request Body**:
 ```json
 [
     {
-        "id_shared": 1
+        "shared_note_id": 1
     }
 ]
 ```

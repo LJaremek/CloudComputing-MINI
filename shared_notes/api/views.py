@@ -53,12 +53,12 @@ class DeleteUserView(generics.DestroyAPIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# class DeleteSharedView(generics.DestroyAPIView):
-#     queryset = SharedNote.objects.all()
-#     serializer_class = SharedNoteSerializer
-#     lookup_url_kwarg = 'shared_id'
+class DeleteSharedNoteView(generics.DestroyAPIView):
+    queryset = SharedNote.objects.all()
+    serializer_class = SharedNoteSerializer
+    lookup_url_kwarg = "shared_note_id"
 
-#     def delete(self, request, *args, **kwargs):
-#         user = self.get_object()
-#         self.perform_destroy(user)
-#         return Response(status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, *args, **kwargs):
+        shared_note = self.get_object()
+        self.perform_destroy(shared_note)
+        return Response(status=status.HTTP_204_NO_CONTENT)
