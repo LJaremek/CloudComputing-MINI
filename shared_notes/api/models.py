@@ -20,7 +20,7 @@ class Note(models.Model):
     id_user = models.ForeignKey(User, models.CASCADE, db_column="id_user")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    shared_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = "notes"

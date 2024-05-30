@@ -16,7 +16,7 @@ class CreateNoteView(generics.CreateAPIView):
     serializer_class = NoteSerializer
 
 
-class SharedNoteView(generics.CreateAPIView):
+class ShareNoteView(generics.CreateAPIView):
     queryset = SharedNote.objects.all()
     serializer_class = SharedNoteSerializer
 

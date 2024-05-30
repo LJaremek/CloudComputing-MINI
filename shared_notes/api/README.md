@@ -56,7 +56,6 @@
     "id_user": "1",
     "content": "MY note content :3",
     "created_at": <auto_now_add>, // optional
-    "shared_at": <auto_now> // optional
 }
 ```
 
@@ -66,11 +65,9 @@
 * **Description**: Delete note.
 * **Request Body**:
 ```json
-[
-    {
-        "id_note": 1
-    }
-]
+{
+    "id_note": 1
+}
 ```
 
 ### Delete User
@@ -79,11 +76,9 @@
 * **Description**: Delete user.
 * **Request Body**:
 ```json
-[
-    {
-        "id_user": 1
-    }
-]
+{
+    "id_user": 1
+}
 ```
 
 ### Delete Shared Note
@@ -92,9 +87,20 @@
 * **Description**: Delete shared note.
 * **Request Body**:
 ```json
-[
-    {
-        "shared_note_id": 1
-    }
-]
+{
+    "shared_note_id": 1
+}
+```
+
+### Share Note
+* **URL**: `/api/share_note/`
+* **Method**: `POST`
+* **Description**: Share a note with another user.
+* **Request Body**:
+```json
+{
+    "id_user": 2,
+    "id_note": 1,
+    "permission_type": "read"
+}
 ```
