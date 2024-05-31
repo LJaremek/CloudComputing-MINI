@@ -20,3 +20,8 @@ resource "google_project_service" "sqladmin" {
   project = google_project.this.project_id
   service = "sqladmin.googleapis.com"
 }
+
+resource "google_project_service" "dns" {
+  project = google_project.this.project_id
+  service = "dns.googleapis.com"  # https://console.cloud.google.com/apis/library/dns.googleapis.com?project=ccp-ws540skksvmrqa63
+}

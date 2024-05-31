@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "api",  # api for PostgreSQL
+    "rest_framework",  # api for endpoints
+    # "rest_framework_swagger"  # Swagger
 ]
 
 MIDDLEWARE = [
@@ -74,9 +77,13 @@ WSGI_APPLICATION = 'shared_notes.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "CloudComputingDatabase",
+        "USER": "Admin",
+        "PASSWORD": "TestPa$$word123",
+        "HOST": "db.djangopostgresql.com",
+        "PORT": "5432",
     }
 }
 
