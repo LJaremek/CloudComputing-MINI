@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %} shared_notes {% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    {% else %}
+        <p>Welcome, new user. Please log in.</p>
+    {% endif %}
+    <div id="content">
+    </div>
+{% endblock %}

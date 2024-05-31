@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "api",  # api for PostgreSQL
     "rest_framework",  # api for endpoints
+    'shared_notes',
+    # "mathfilters"
     # "rest_framework_swagger"  # Swagger
 ]
 
@@ -57,7 +59,7 @@ ROOT_URLCONF = 'shared_notes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,12 +80,8 @@ WSGI_APPLICATION = 'shared_notes.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "CloudComputingDatabase",
-        "USER": "Admin",
-        "PASSWORD": "TestPa$$word123",
-        "HOST": "db.djangopostgresql.com",
-        "PORT": "5432",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}View Note{% endblock %}
+{% block content %}
+    <h1>View Note</h1>
+    <div>
+        <p>{{ note.content }}</p>
+        <p>Created at: {{ note.created_at }}</p>
+        <p>Updated at: {{ note.updated_at }}</p>
+        <a href="{% url 'share_note' note.id_note %}">Share</a> | 
+        <a href="{% url 'edit_note' note.id_note %}">Edit</a> | 
+        <a href="{% url 'delete_note' note.id_note %}">Delete</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %} Your profile {% endblock %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ profile.username }}. Thanks for logging in.</p>
+    {% else %}
+        <p>Please <a href="/accounts/login">log in</a> to see your profile </p>
+    {% endif %}
+{% endblock %}

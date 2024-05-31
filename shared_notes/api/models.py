@@ -1,11 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User as DjangoUser
 
 
 class User(models.Model):
     id_user = models.AutoField(primary_key=True)
     username = models.CharField(max_length=100, unique=True)
     email = models.EmailField(unique=True)
-    pass_hash = models.CharField(max_length=255)
+    user = models.OneToOneField(DjangoUser, on_delete=models.CASCADE)
 
     class Meta:
         db_table = "users"
