@@ -1,15 +1,17 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    color: #333;
 }
 
 #nav {
     background-color: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 15px 0;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #nav ul {
@@ -24,20 +26,31 @@ body {
 }
 
 #nav ul li a {
-    color: #fff; /* Ensure the text color is white */
+    color: #fff;
     text-decoration: none;
+    padding: 5px 10px;
+    align-items: center;
 }
 
 #nav ul li a:hover {
-    color: #ddd; /* Slightly lighter color for hover effect */
+    color: #ddd;
+    background-color: #555;
+    border-radius: 4px;
 }
 
 #main-container {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 h1 {
     color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 form {
@@ -45,17 +58,29 @@ form {
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-input[type="submit"], button {
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="submit"],
+button {
     background: #333;
     color: #fff;
     padding: 10px 15px;
     border: none;
     cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
 }
 
-input[type="submit"]:hover, button:hover {
+input[type="submit"]:hover,
+button:hover {
     background: #555;
 }
 
@@ -87,8 +112,42 @@ ul li {
     margin: 10px 0;
     padding: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
 }
 
 ul li a {
     margin-right: 10px;
+}
+
+.error-list {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.error-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.error-list li {
+    margin: 0;
+}
+
+.nav-icon {
+    height: 30px;
+    width: 30px;
+    margin-right: 8px;
+    display: inline-block;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 50%;
+    margin-bottom: -10px;
 }

@@ -2,9 +2,13 @@
 {% block title %}Edit Note{% endblock %}
 {% block content %}
     <h1>Edit Note</h1>
+    {% if user_has_permission %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
+    {% else %}
+    <p>You do not have permission to edit this note.</p>
+    {% endif %}
 {% endblock %}

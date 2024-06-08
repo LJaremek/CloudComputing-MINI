@@ -1,6 +1,7 @@
+{% load static %}
 <div id="nav">
     <ul id="nav-list">
-        <li><a href="/">Home</a></li>
+        <li><a href="/"><img src="{% static 'icon.png' %}" alt="Logo" class="nav-icon"> Home</a></li>
         <li><a href="/accounts/profile">Profile</a></li>
         <li><a href="/create_user">Create User</a></li>
         <li><a href="/accounts/login">Login</a></li>

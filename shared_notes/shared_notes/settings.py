@@ -40,8 +40,6 @@ INSTALLED_APPS = [
     "api",  # api for PostgreSQL
     "rest_framework",  # api for endpoints
     'shared_notes',
-    # "mathfilters"
-    # "rest_framework_swagger"  # Swagger
 ]
 
 MIDDLEWARE = [

@@ -21,7 +21,7 @@ class Note(models.Model):
     id_user = models.ForeignKey(User, models.CASCADE, db_column="id_user")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "notes"
@@ -31,11 +31,15 @@ class Note(models.Model):
 
 
 class SharedNote(models.Model):
+    PERMISSION_CHOICES = [
+        ('read', 'Read'),
+        ('write', 'Write')
+    ]
     id_shared = models.AutoField(primary_key=True)
     id_user = models.ForeignKey(User, models.CASCADE, db_column="id_user")
     id_note = models.ForeignKey(Note, models.CASCADE, db_column="id_note")
     shared_at = models.DateTimeField(auto_now=True)
-    permission_type = models.CharField(max_length=50)
+    permission_type = models.CharField(max_length=50, choices=PERMISSION_CHOICES)
 
     class Meta:
         db_table = "shared_notes"

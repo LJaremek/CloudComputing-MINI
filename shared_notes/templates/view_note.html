@@ -6,8 +6,13 @@
         <p>{{ note.content }}</p>
         <p>Created at: {{ note.created_at }}</p>
         <p>Updated at: {{ note.updated_at }}</p>
-        <a href="{% url 'share_note' note.id_note %}">Share</a> | 
-        <a href="{% url 'edit_note' note.id_note %}">Edit</a> | 
-        <a href="{% url 'delete_note' note.id_note %}">Delete</a>
+
+        {% if is_owner %}
+            <a href="{% url 'share_note' note.id_note %}">Share</a> | 
+            <a href="{% url 'edit_note' note.id_note %}">Edit</a> | 
+            <a href="{% url 'delete_note' note.id_note %}">Delete</a>
+        {% elif has_edit_permission %}
+            <a href="{% url 'edit_note' note.id_note %}">Edit</a>
+        {% endif %}
     </div>
 {% endblock %}
