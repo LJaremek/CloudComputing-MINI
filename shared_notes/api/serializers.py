@@ -21,3 +21,12 @@ class SharedNoteSerializer(serializers.ModelSerializer):
         fields = [
             "id_shared", "id_user", "id_note", "shared_at", "permission_type"
             ]
+
+
+class SharedNoteDetailSerializer(serializers.ModelSerializer):
+    note_id = serializers.IntegerField(source="id_note.id_note")
+    permission_type = serializers.CharField(source="permission_type")
+
+    class Meta:
+        model = SharedNote
+        fields = ["note_id", "permission_type"]

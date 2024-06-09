@@ -44,7 +44,7 @@ resource "google_compute_instance" "this" {
   }
 
   # I know it is ugly. However it works only in this way
-  metadata_startup_script = "sudo apt-get update;sudo apt-get install -y python3-pip python3-dev git libpq-dev;sudo pip3 install virtualenv;sudo apt-get install -y postgresql-client;sudo git clone https://github.com/LJaremek/CloudComputing-MINI.git /opt/CloudComputing-MINI;cd /opt/CloudComputing-MINI/shared_notes;sudo git checkout frontend;sudo python3 -m virtualenv venv;source venv/bin/activate;sudo pip3 install -r requirements.txt;echo '${google_sql_database_instance.this.public_ip_address} db.djangopostgresql.com' | sudo tee -a /etc/hosts;sudo python3 manage.py migrate;sudo nohup python3 manage.py runserver 0.0.0.0:8000 &"
+  metadata_startup_script = "sudo apt-get update;sudo apt-get install -y python3-pip python3-dev git libpq-dev;sudo pip3 install virtualenv;sudo apt-get install -y postgresql-client;sudo git clone https://github.com/LJaremek/CloudComputing-MINI.git /opt/CloudComputing-MINI;cd /opt/CloudComputing-MINI/shared_notes;sudo python3 -m virtualenv venv;source venv/bin/activate;sudo pip3 install -r requirements.txt;echo '${google_sql_database_instance.this.public_ip_address} db.djangopostgresql.com' | sudo tee -a /etc/hosts;sudo python3 manage.py migrate;sudo nohup python3 manage.py runserver 0.0.0.0:8000 &"
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro", "sql-admin"]
   }

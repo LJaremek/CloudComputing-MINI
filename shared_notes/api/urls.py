@@ -1,8 +1,8 @@
 from django.urls import path
 # from rest_framework_swagger.views import get_swagger_view
 
-from .views import CreateUserView, CreateNoteView
-from .views import ShareNoteView
+from .views import CreateUserView, CreateNoteView, NoteDetailView, UserDetailView
+from .views import ShareNoteView, SharedNotesListView
 from .views import ListUsersView, ListNotesView
 from .views import DeleteNoteView,  DeleteUserView, DeleteSharedNoteView
 
@@ -23,4 +23,7 @@ urlpatterns = [
 
     path("users/", ListUsersView.as_view(), name="list_users"),
     path("notes/", ListNotesView.as_view(), name="list_notes"),
+    path("shared_notes/<int:user_id>/", SharedNotesListView.as_view(), name="shared_notes"),
+    path("note/<int:id_note>/", NoteDetailView.as_view(), name="note_detail"),
+    path("user/<int:id_user>/", UserDetailView.as_view(), name="user_detail"),
 ]
