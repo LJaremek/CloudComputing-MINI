@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Shared Notes{% endblock %}
+{% block content %}
+    <h1>Shared Notes</h1>
+    <ul>
+        {% for shared_note in shared_notes %}
+            <li>
+                <a href="{% url 'view_note' shared_note.id_note.id_note %}">
+                    {{ shared_note.id_note.content|slice:":100" }}{% if shared_note.id_note.content|length > 100 %}...{% endif %}
+                </a>
+                <span>Permission: {{ shared_note.permission_type }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

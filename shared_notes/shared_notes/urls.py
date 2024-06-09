@@ -21,5 +21,16 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include("api.urls")),
-    path("", views.home, name="home"),
+    path("", views.index, name='index'),
+    path("create_user", views.create_user, name="create_user"),
+    path('accounts/logout/', views.logout_view, name="logout"),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/profile/', views.own_profile, name="profile"),
+    path("new_note", views.new_note, name="new_note"),
+    path('notes', views.notes, name="notes"),
+    path('note/<int:note_id>/', views.view_note, name='view_note'),
+    path('shared_notes', views.shared_notes, name='shared_notes'),
+    path('note/<int:note_id>/share', views.share_note, name='share_note'),
+    path('note/<int:note_id>/delete', views.delete_note, name='delete_note'),
+    path('note/<int:note_id>/edit', views.edit_note, name='edit_note'),
 ]
